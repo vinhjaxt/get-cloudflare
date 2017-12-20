@@ -127,6 +127,7 @@ function requestCaller(options, callback) {
       if(typeof(options) === "string") options = {
         url: options
       }
+      if(!options['url']) return;
       const parseURL = url.parse(options['url']);
       const hostname = parseURL.hostname;
       let requesOptions = Object.assign({
