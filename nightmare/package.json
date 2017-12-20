@@ -1,0 +1,16 @@
+{
+  "name": "get-cloudflare-by-nightmare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cfnightmare.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nightmare": "^2.10.0",
+    "nightmare-load-filter": "^0.2.0",
+    "request": "^2.83.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "get-cloudflare-by-phantomjs",
+  "version": "1.0.0",
+  "main": "cfphantom.js",
+  "license": "MIT",
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.16",
+    "webdriverio": "^4.9.11"
+  }
+}
