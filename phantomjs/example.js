@@ -1,7 +1,18 @@
 var request = require('.')
+process.on('uncaughtException', function (err){
+  console.error('process.uncaughtException: ',err);
+});
 
-setTimeout(function () {
+var i=0;
+setInterval(function () {
+  i++;
+  let ok1 = i.toString()+'ok1';
+  let ok2 = i.toString()+'ok2';
+  let ok3 = i.toString()+'ok3';
+  let ok4 = i.toString()+'ok4';
+
   // First request
+  console.time(ok1);
   request({
     method: 'GET',
     url: 'https://bittrex.com/',
@@ -11,14 +22,10 @@ setTimeout(function () {
         console.error(e);
         return
       }
-      console.log(r.headers);
-      console.log(request.getUa());
-      console.log(request.getCookies());
-      console.log('OK1');
-
-      request.closePhantomjs()
+      console.timeEnd(ok1);
       
       // Other request
+      console.time(ok2);
       request({
         method: 'GET',
         url: 'https://www.bittrex.com/?'+(+new Date()),
@@ -28,14 +35,13 @@ setTimeout(function () {
             console.error(e);
             return
           }
-          console.log('OK2');
+          console.timeEnd(ok2);
       });
-
-
   });
 
 
   // First request
+  console.time(ok3);
   request({
     method: 'GET',
     url: 'http://klassprof.org/',
@@ -45,10 +51,10 @@ setTimeout(function () {
         console.error(e);
         return
       }
-      console.log('OK3');
-      request.closePhantomjs()
+      console.timeEnd(ok3);
       
       // Other request
+      console.time(ok4);
       request({
         method: 'GET',
         url: 'http://klassprof.org/?'+(+new Date()),
@@ -58,10 +64,8 @@ setTimeout(function () {
             console.error(e);
             return
           }
-          console.log('OK4');
+          console.timeEnd(ok4);
       });
-
-
   });
 
   

@@ -3,11 +3,12 @@ var request = require('request');
 const url = require('url');
 const fs = require('fs');
 var FileCookieStore = require('tough-cookie-filestore');
-/**
+/*
 // Need your improve or not?
 var tough = require('tough-cookie');
 var Cookie = tough.Cookie;
 */
+const needCookies = ['__cfduid','cf_clearance'];
 
 
 function requestCaller(options, callback) {
@@ -22,7 +23,8 @@ function requestCaller(options, callback) {
     self.getCloudflareCookie = function (urlToGet, callback) {
       let browser = new Zombie({
         userAgent: self.opts.userAgent,
-        loadCSS: false,
+        features: 'scripts no-css no-img no-iframe',
+        strictSSL: false,
         runScripts: true,
         headers: {
           'User-Agent': self.opts.userAgent,
@@ -38,6 +40,7 @@ function requestCaller(options, callback) {
 
       browser.visit(urlToGet)
       .then(function() {
+        callback(null, null);
         browser.tabs.closeAll();
       })
       .catch(function(error) {
@@ -58,9 +61,11 @@ function requestCaller(options, callback) {
           browser.cookies.map(function (cookie){
             try{
               if(cookie){
-                // Improve here or not?
-                // let tgCookie = Cookie.fromJSON(cookie.toJSON());
-                self.requestJar.setCookie(cookie, urlToGet);
+                if(~needCookies.indexOf(cookie['key']) || ~needCookies.indexOf(cookie['name'])){
+                  // Improve here or not?
+                  // let tgCookie = Cookie.fromJSON(cookie.toJSON());
+                  self.requestJar.setCookie(cookie, urlToGet);
+                }
               }
             }catch(e){}
             return '';
@@ -145,6 +150,9 @@ function requestCaller(options, callback) {
         }
       });
       self.realRequest(requesOptions, function(e,r,b) {
+        if(e){
+          return callback.apply(callback, arguments);
+        }
         if(~b.indexOf('id="challenge-form"') && ~b.indexOf('id="jschl-answer"')){
           self.getCloudflareCookie(requesOptions['url'], function (e, cookie){
             if(e){

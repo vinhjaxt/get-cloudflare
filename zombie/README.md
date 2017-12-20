@@ -1,3 +1,3 @@
 # Bypass cloudflare by Zombie
-# This is a copy of cfget package
+# This is a fork of cfget package
 # Edited by vinhjaxt

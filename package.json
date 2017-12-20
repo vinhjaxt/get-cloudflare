@@ -10,10 +10,19 @@
     "type": "git",
     "url": "git+https://github.com/vinhjaxt/get-cloudflare.git"
   },
-  "author": "",
+  "author": "vinhjaxt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vinhjaxt/get-cloudflare/issues"
   },
+  "dependencies": {
+    "request": "^2.83.0",
+    "nightmare": "^2.10.0",
+    "nightmare-load-filter": "^0.2.0",
+    "phantomjs-prebuilt": "^2.1.16",
+    "webdriverio": "^4.9.11",
+    "tough-cookie-filestore": "0.0.1",
+    "zombie": "^5.0.7"
+  }
   "homepage": "https://github.com/vinhjaxt/get-cloudflare#readme"
 }

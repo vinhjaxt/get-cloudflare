@@ -1,5 +1,11 @@
 module.exports = {
-  nighmare: require('./nightmare'),
-  phantomjs: require('./phantomjs'),
-  zombie: require('./zombie'),
+  nighmare: function () {
+    return require('./nightmare');
+  },
+  phantomjs: function () {
+    return require('./phantomjs');
+  },
+  zombie: function () {
+    return require('./zombie');
+  },
 };
