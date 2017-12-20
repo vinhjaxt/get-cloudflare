@@ -41,18 +41,18 @@ function requestCaller(options, callback) {
       browser.visit(urlToGet)
       .then(function() {
         callback(null, null);
-        browser.tabs.closeAll();
+        try{ browser.tabs.closeAll(); }catch(e){};
       })
       .catch(function(error) {
         // code 502 is expected
         let html = browser.html();
         if(~html.indexOf('id="challenge-form"') && ~html.indexOf('id="jschl-answer"')){
           browser.wait({ duration: 6000 }, function () {
-            browser.tabs.closeAll()
+            try{ browser.tabs.closeAll(); }catch(e){}
           });
         }else{
           callback(error, html);
-          browser.tabs.closeAll()
+          try{ browser.tabs.closeAll(); }catch(e){}
         }
       });
       browser.on('redirect', function(req, res) {
@@ -71,10 +71,10 @@ function requestCaller(options, callback) {
             return '';
           });
           callback(null, self.getCookies(urlToGet));
-          browser.tabs.closeAll()
+          try{ browser.tabs.closeAll(); }catch(e){}
         }).catch(function(e){
           callback(e, null);
-          browser.tabs.closeAll()
+          try{ browser.tabs.closeAll(); }catch(e){}
         });
       });
     };
