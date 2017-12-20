@@ -23,6 +23,6 @@
     "webdriverio": "^4.9.11",
     "tough-cookie-filestore": "0.0.1",
     "zombie": "^5.0.7"
-  }
+  },
   "homepage": "https://github.com/vinhjaxt/get-cloudflare#readme"
 }
