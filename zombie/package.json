@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "request": "^2.83.0",
+    "tough-cookie-filestore": "0.0.1",
     "zombie": "^5.0.7"
   }
 }
